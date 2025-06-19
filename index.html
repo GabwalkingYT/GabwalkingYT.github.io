@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Adopt Me OP FE TRADEABLE EQUIPPABLE Pet Spawner 2025</title>
   <style>
     html, body {
@@ -11,12 +11,10 @@
       color: white;
       text-align: center;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-    }
-
-    body {
       background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
       background-size: 1400% 1400%;
       animation: rainbow 20s ease infinite;
@@ -37,13 +35,63 @@
     p {
       font-size: 1.2rem;
       text-shadow: 1px 1px 5px #00000070;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background: white;
+      color: black;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: #f0f0f0;
+    }
+
+    #confirmation {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      user-select: none;
+    }
+
+    #confirmation.show {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>🦄 Adopt Me OP FE Pet Spawner</h1>
-    <p>TRADEABLE & EQUIPPABLE • 2025 Edition</p>
-  </div>
+  <h1>🦄 Adopt Me OP FE Pet Spawner</h1>
+  <p>TRADEABLE & EQUIPPABLE • 2025 Edition</p>
+
+  <button id="copyBtn">Copy Spawn Script</button>
+  <div id="confirmation">Copied to clipboard! ✅</div>
+
+  <script>
+    const copyBtn = document.getElementById('copyBtn');
+    const confirmation = document.getElementById('confirmation');
+    const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/f4shn/scripts/refs/heads/main/adopt_pet_spawner.lua",true))()';
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(scriptText).then(() => {
+        confirmation.classList.add('show');
+        setTimeout(() => {
+          confirmation.classList.remove('show');
+        }, 2000);
+      }).catch(() => {
+        alert('Failed to copy, please copy manually:\n' + scriptText);
+      });
+    });
+  </script>
 </body>
 </html>
+
